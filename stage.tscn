@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccb1kc7a3mpay"]
+
+[ext_resource type="Script" path="res://stage.gd" id="1_3wdw0"]
+[ext_resource type="Texture2D" uid="uid://v8sujqtxfoyu" path="res://background.png" id="1_kjfvj"]
+[ext_resource type="Texture2D" uid="uid://du1g1cm0jsi4m" path="res://football_ball.png" id="2_5720y"]
+[ext_resource type="PackedScene" uid="uid://deahyu1t2scq8" path="res://score.tscn" id="4_ufwcp"]
+[ext_resource type="PackedScene" uid="uid://b2r1qngb730h2" path="res://results.tscn" id="5_32d14"]
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_3wdw0")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+texture = ExtResource("1_kjfvj")
+
+[node name="Ball" type="Sprite2D" parent="."]
+position = Vector2(163, 161)
+texture = ExtResource("2_5720y")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Score" parent="UI" instance=ExtResource("4_ufwcp")]
+
+[node name="Results" parent="UI" instance=ExtResource("5_32d14")]

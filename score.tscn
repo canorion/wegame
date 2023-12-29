@@ -1,0 +1,158 @@
+[gd_scene load_steps=12 format=3 uid="uid://deahyu1t2scq8"]
+
+[ext_resource type="Texture2D" uid="uid://bosh0q5ji222g" path="res://ui.png" id="1_3eb78"]
+[ext_resource type="Script" path="res://score.gd" id="1_6kaq2"]
+[ext_resource type="FontFile" uid="uid://7k4fj8mgpdh3" path="res://numbers.fnt" id="2_cccn8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nvhi"]
+atlas = ExtResource("1_3eb78")
+region = Rect2(3, 139, 52, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkasq"]
+atlas = ExtResource("1_3eb78")
+region = Rect2(60, 139, 52, 35)
+
+[sub_resource type="Animation" id="Animation_83xfc"]
+resource_name = "hidden"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_yve7w"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_w0xs4"]
+resource_name = "visible"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_myf82"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -48), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4f7te"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1h7cd"]
+_data = {
+"RESET": SubResource("Animation_4f7te"),
+"hidden": SubResource("Animation_83xfc"),
+"hide": SubResource("Animation_yve7w"),
+"show": SubResource("Animation_myf82"),
+"visible": SubResource("Animation_w0xs4")
+}
+
+[node name="Score" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6kaq2")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = -48.0
+offset_right = 160.0
+offset_bottom = 132.0
+
+[node name="HomeFlag" type="TextureRect" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 5.0
+offset_right = -49.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_8nvhi")
+
+[node name="AwayFlag" type="TextureRect" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 42.0
+offset_top = 5.0
+offset_right = 94.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_nkasq")
+
+[node name="ScoreText" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 9.0
+offset_right = 33.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_cccn8")
+text = "0 - 0"
+horizontal_alignment = 1
+
+[node name="Animation" type="AnimationPlayer" parent="Container"]
+autoplay = "hidden"
+libraries = {
+"": SubResource("AnimationLibrary_1h7cd")
+}
