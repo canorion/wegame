@@ -1,16 +1,31 @@
 [gd_scene load_steps=12 format=3 uid="uid://deahyu1t2scq8"]
 
-[ext_resource type="Texture2D" uid="uid://bosh0q5ji222g" path="res://ui.png" id="1_3eb78"]
-[ext_resource type="Script" path="res://score.gd" id="1_6kaq2"]
-[ext_resource type="FontFile" uid="uid://7k4fj8mgpdh3" path="res://numbers.fnt" id="2_cccn8"]
+[ext_resource type="Script" path="res://ui/score/score.gd" id="1_igs40"]
+[ext_resource type="Texture2D" uid="uid://bosh0q5ji222g" path="res://ui/ui.png" id="2_ij77s"]
+[ext_resource type="FontFile" uid="uid://7k4fj8mgpdh3" path="res://ui/numbers/numbers.fnt" id="3_fmxnt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nvhi"]
-atlas = ExtResource("1_3eb78")
+atlas = ExtResource("2_ij77s")
 region = Rect2(3, 139, 52, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nkasq"]
-atlas = ExtResource("1_3eb78")
+atlas = ExtResource("2_ij77s")
 region = Rect2(60, 139, 52, 35)
+
+[sub_resource type="Animation" id="Animation_4f7te"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -48)]
+}
 
 [sub_resource type="Animation" id="Animation_83xfc"]
 resource_name = "hidden"
@@ -43,22 +58,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, -48)]
 }
 
-[sub_resource type="Animation" id="Animation_w0xs4"]
-resource_name = "visible"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_myf82"]
 resource_name = "show"
 tracks/0/type = "value"
@@ -74,8 +73,9 @@ tracks/0/keys = {
 "values": [Vector2(0, -48), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_4f7te"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_w0xs4"]
+resource_name = "visible"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -86,7 +86,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -48)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1h7cd"]
@@ -105,37 +105,56 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6kaq2")
+script = ExtResource("1_igs40")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -160.0
 offset_top = -48.0
 offset_right = 160.0
 offset_bottom = 132.0
+grow_horizontal = 2
 
-[node name="HomeFlag" type="TextureRect" parent="Container"]
+[node name="HomeFlag" type="Control" parent="Container"]
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 21.0
+offset_right = 100.0
+offset_bottom = 21.0
+
+[node name="Texture" type="TextureRect" parent="Container/HomeFlag"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -101.0
-offset_top = 5.0
-offset_right = -49.0
-offset_bottom = 40.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
 texture = SubResource("AtlasTexture_8nvhi")
 
-[node name="AwayFlag" type="TextureRect" parent="Container"]
+[node name="AwayFlag" type="Control" parent="Container"]
+anchors_preset = 0
+offset_left = 213.0
+offset_top = 21.0
+offset_right = 213.0
+offset_bottom = 21.0
+
+[node name="Texture" type="TextureRect" parent="Container/AwayFlag"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 42.0
-offset_top = 5.0
-offset_right = 94.0
-offset_bottom = 40.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.5
+offset_right = 52.0
+offset_bottom = 17.5
+grow_vertical = 2
 texture = SubResource("AtlasTexture_nkasq")
 
 [node name="ScoreText" type="Label" parent="Container"]
@@ -147,7 +166,8 @@ offset_left = -40.0
 offset_top = 9.0
 offset_right = 33.0
 offset_bottom = 40.0
-theme_override_fonts/font = ExtResource("2_cccn8")
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_fmxnt")
 text = "0 - 0"
 horizontal_alignment = 1
 

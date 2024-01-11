@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du1g1cm0jsi4m"
-path="res://.godot/imported/football_ball.png-a6670435d3af51d8f84f138475962ef4.ctex"
+uid="uid://cqdma4a483awd"
+path="res://.godot/imported/numbers.png-477b565c30840756e1680536723d7f27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://football_ball.png"
-dest_files=["res://.godot/imported/football_ball.png-a6670435d3af51d8f84f138475962ef4.ctex"]
+source_file="res://ui/numbers/numbers.png"
+dest_files=["res://.godot/imported/numbers.png-477b565c30840756e1680536723d7f27.ctex"]
 
 [params]
 

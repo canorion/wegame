@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgdbl8cqmlgva"]
+
+[ext_resource type="Script" path="res://match/ball/ball.gd" id="1_64k3c"]
+[ext_resource type="Texture2D" uid="uid://du1g1cm0jsi4m" path="res://match/football_ball.png" id="1_b65yv"]
+
+[sub_resource type="Animation" id="Animation_47230"]
+resource_name = "stand"
+
+[sub_resource type="Animation" id="Animation_gj61k"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o0vw6"]
+_data = {
+"shoot": SubResource("Animation_gj61k"),
+"stand": SubResource("Animation_47230")
+}
+
+[node name="Ball" type="Node2D"]
+script = ExtResource("1_64k3c")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_b65yv")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "stand"
+libraries = {
+"": SubResource("AnimationLibrary_o0vw6")
+}

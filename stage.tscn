@@ -1,21 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccb1kc7a3mpay"]
+[gd_scene load_steps=10 format=3 uid="uid://ccb1kc7a3mpay"]
 
 [ext_resource type="Script" path="res://stage.gd" id="1_3wdw0"]
-[ext_resource type="Texture2D" uid="uid://v8sujqtxfoyu" path="res://background.png" id="1_kjfvj"]
-[ext_resource type="Texture2D" uid="uid://du1g1cm0jsi4m" path="res://football_ball.png" id="2_5720y"]
-[ext_resource type="PackedScene" uid="uid://deahyu1t2scq8" path="res://score.tscn" id="4_ufwcp"]
-[ext_resource type="PackedScene" uid="uid://b2r1qngb730h2" path="res://results.tscn" id="5_32d14"]
+[ext_resource type="Texture2D" uid="uid://v8sujqtxfoyu" path="res://match/background.png" id="1_kjfvj"]
+[ext_resource type="PackedScene" uid="uid://deahyu1t2scq8" path="res://ui/score/score.tscn" id="4_ufwcp"]
+[ext_resource type="PackedScene" uid="uid://b2r1qngb730h2" path="res://ui/results/results.tscn" id="5_32d14"]
+[ext_resource type="PackedScene" uid="uid://b2p61x7g5uoiu" path="res://match/keeper/keeper.tscn" id="5_80m5n"]
+[ext_resource type="PackedScene" uid="uid://73p30hdiuail" path="res://match/shooter/shooter.tscn" id="6_bja6a"]
+[ext_resource type="PackedScene" uid="uid://cb6s74otbgqcm" path="res://match/goal/goal.tscn" id="6_bpc2c"]
+[ext_resource type="PackedScene" uid="uid://dgdbl8cqmlgva" path="res://match/ball/ball.tscn" id="7_h2gmw"]
+[ext_resource type="PackedScene" uid="uid://dgn0pqakdeqgb" path="res://audiences/audiences.tscn" id="7_tcuy4"]
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_3wdw0")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Background"]
 position = Vector2(160, 90)
 texture = ExtResource("1_kjfvj")
 
-[node name="Ball" type="Sprite2D" parent="."]
-position = Vector2(163, 161)
-texture = ExtResource("2_5720y")
+[node name="Audiences" type="Node2D" parent="Background"]
+
+[node name="Audience1" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(84, 85)
+
+[node name="Audience2" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(10, 85)
+
+[node name="Audience3" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(160, 85)
+
+[node name="Audience4" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(235, 85)
+
+[node name="Audience5" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(309, 85)
+
+[node name="Goal" parent="Background" instance=ExtResource("6_bpc2c")]
+position = Vector2(161, 125)
+
+[node name="Match" type="Node2D" parent="."]
+
+[node name="Keeper" parent="Match" instance=ExtResource("5_80m5n")]
+position = Vector2(161, 132)
+
+[node name="Ball" parent="Match" instance=ExtResource("7_h2gmw")]
+position = Vector2(161, 176)
+
+[node name="Shooter" parent="Match" instance=ExtResource("6_bja6a")]
+position = Vector2(161, 181)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

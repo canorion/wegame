@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb6s74otbgqcm"]
+
+[ext_resource type="Texture2D" uid="uid://d1lc4dcs1h3cb" path="res://match/goal/goal.png" id="1_s3if0"]
+
+[node name="Goal" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+texture = ExtResource("1_s3if0")

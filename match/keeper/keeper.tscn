@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2p61x7g5uoiu"]
+
+[ext_resource type="Script" path="res://match/keeper/keeper.gd" id="1_sd487"]
+
+[sub_resource type="Animation" id="Animation_hkpqa"]
+resource_name = "lose"
+
+[sub_resource type="Animation" id="Animation_7m8l6"]
+resource_name = "stand"
+
+[sub_resource type="Animation" id="Animation_gc81r"]
+resource_name = "win"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yloks"]
+_data = {
+"lose": SubResource("Animation_hkpqa"),
+"stand": SubResource("Animation_7m8l6"),
+"win": SubResource("Animation_gc81r")
+}
+
+[node name="Keeper" type="Node2D"]
+script = ExtResource("1_sd487")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -21)
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "stand"
+libraries = {
+"": SubResource("AnimationLibrary_yloks")
+}

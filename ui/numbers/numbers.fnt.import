@@ -1,0 +1,16 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://7k4fj8mgpdh3"
+path="res://.godot/imported/numbers.fnt-e90ad27dc0a8517b5a0d6d36eaa4d198.fontdata"
+
+[deps]
+
+source_file="res://ui/numbers/numbers.fnt"
+dest_files=["res://.godot/imported/numbers.fnt-e90ad27dc0a8517b5a0d6d36eaa4d198.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true

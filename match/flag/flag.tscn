@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3j3aw576ut"]
+
+[ext_resource type="Script" path="res://match/flag/flag.gd" id="1_u3axy"]
+
+[sub_resource type="Animation" id="Animation_vc2hm"]
+resource_name = "wave"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8g61e"]
+_data = {
+"wave": SubResource("Animation_vc2hm")
+}
+
+[node name="Flag" type="Node2D"]
+script = ExtResource("1_u3axy")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(6, -6)
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "wave"
+libraries = {
+"": SubResource("AnimationLibrary_8g61e")
+}

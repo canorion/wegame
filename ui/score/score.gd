@@ -11,6 +11,8 @@ enum Sides {
 
 @onready var score_text = $Container/ScoreText
 @onready var anim = $Container/Animation
+@onready var home_flag = $Container/HomeFlag/Texture
+@onready var away_flag = $Container/AwayFlag/Texture
 
 var scores = {
 	Sides.SIDE_HOME: 0,
@@ -18,6 +20,15 @@ var scores = {
 }
 
 var score_limit = 10
+
+
+func init_team_logos(home_logo_tex, away_logo_tex):
+	home_flag.texture = home_logo_tex
+	away_flag.texture = away_logo_tex
+
+
+func set_score_limit(limit):
+	score_limit = 10
 
 
 func reset_score():
