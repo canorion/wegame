@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" path="res://match/shooter/shooter.gd" id="1_udtud"]
 
-[sub_resource type="Animation" id="Animation_33jya"]
-resource_name = "stand"
+[sub_resource type="Animation" id="Animation_6bhoo"]
+resource_name = "lose"
 
 [sub_resource type="Animation" id="Animation_g4h2x"]
 resource_name = "shoot"
 
+[sub_resource type="Animation" id="Animation_33jya"]
+resource_name = "stand"
+
 [sub_resource type="Animation" id="Animation_mnmhk"]
 resource_name = "win"
-
-[sub_resource type="Animation" id="Animation_6bhoo"]
-resource_name = "lose"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1onhw"]
 _data = {
@@ -28,7 +28,7 @@ script = ExtResource("1_udtud")
 [node name="Sprite" type="Sprite2D" parent="."]
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-autoplay = "stand"
 libraries = {
 "": SubResource("AnimationLibrary_1onhw")
 }
+autoplay = "stand"

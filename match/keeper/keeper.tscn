@@ -25,7 +25,7 @@ script = ExtResource("1_sd487")
 position = Vector2(0, -21)
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-autoplay = "stand"
 libraries = {
 "": SubResource("AnimationLibrary_yloks")
 }
+autoplay = "stand"
