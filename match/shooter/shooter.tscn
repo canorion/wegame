@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://73p30hdiuail"]
+[gd_scene load_steps=8 format=3 uid="uid://73p30hdiuail"]
 
 [ext_resource type="Script" path="res://match/shooter/shooter.gd" id="1_udtud"]
 
 [sub_resource type="Animation" id="Animation_6bhoo"]
 resource_name = "lose"
 
-[sub_resource type="Animation" id="Animation_g4h2x"]
-resource_name = "shoot"
+[sub_resource type="Animation" id="Animation_v0b0o"]
+resource_name = "miss"
 
 [sub_resource type="Animation" id="Animation_33jya"]
-resource_name = "stand"
+resource_name = "ready"
+
+[sub_resource type="Animation" id="Animation_g4h2x"]
+resource_name = "shoot"
 
 [sub_resource type="Animation" id="Animation_mnmhk"]
 resource_name = "win"
@@ -17,8 +20,9 @@ resource_name = "win"
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1onhw"]
 _data = {
 "lose": SubResource("Animation_6bhoo"),
+"miss": SubResource("Animation_v0b0o"),
+"ready": SubResource("Animation_33jya"),
 "shoot": SubResource("Animation_g4h2x"),
-"stand": SubResource("Animation_33jya"),
 "win": SubResource("Animation_mnmhk")
 }
 
@@ -31,4 +35,4 @@ script = ExtResource("1_udtud")
 libraries = {
 "": SubResource("AnimationLibrary_1onhw")
 }
-autoplay = "stand"
+autoplay = "ready"

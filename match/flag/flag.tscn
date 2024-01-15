@@ -14,10 +14,9 @@ _data = {
 script = ExtResource("1_u3axy")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(6, -6)
 
 [node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "wave"
 libraries = {
 "": SubResource("AnimationLibrary_8g61e")
 }
-autoplay = "wave"

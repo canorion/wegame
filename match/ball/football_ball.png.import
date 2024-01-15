@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://du1g1cm0jsi4m"
-path="res://.godot/imported/football_ball.png-386762329d5963d007db816c5104bf48.ctex"
+path="res://.godot/imported/football_ball.png-e4c4bafc58b0495bafe5663c9745a6c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://match/football_ball.png"
-dest_files=["res://.godot/imported/football_ball.png-386762329d5963d007db816c5104bf48.ctex"]
+source_file="res://match/ball/football_ball.png"
+dest_files=["res://.godot/imported/football_ball.png-e4c4bafc58b0495bafe5663c9745a6c7.ctex"]
 
 [params]
 

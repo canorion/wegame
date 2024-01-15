@@ -1,8 +1,9 @@
+class_name Flag
 extends Node2D
 
 
 @onready var sprite = $Sprite
 
 
-func _init_flag(tex_path):
-	sprite.texture = tex_path
+func init_flag(tex):
+	sprite.texture = tex

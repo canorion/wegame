@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4be1oqt7hwcn"]
+
+[ext_resource type="Script" path="res://web_request/web_request.gd" id="1_eosin"]
+
+[node name="WebRequest" type="Node"]
+script = ExtResource("1_eosin")
+
+[node name="TeamInit" type="HTTPRequest" parent="."]
+
+[node name="MatchResult" type="HTTPRequest" parent="."]

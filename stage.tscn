@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccb1kc7a3mpay"]
+[gd_scene load_steps=23 format=3 uid="uid://ccb1kc7a3mpay"]
 
 [ext_resource type="Script" path="res://stage.gd" id="1_3wdw0"]
 [ext_resource type="Texture2D" uid="uid://v8sujqtxfoyu" path="res://match/background.png" id="1_kjfvj"]
@@ -9,6 +9,54 @@
 [ext_resource type="PackedScene" uid="uid://cb6s74otbgqcm" path="res://match/goal/goal.tscn" id="6_bpc2c"]
 [ext_resource type="PackedScene" uid="uid://dgdbl8cqmlgva" path="res://match/ball/ball.tscn" id="7_h2gmw"]
 [ext_resource type="PackedScene" uid="uid://dgn0pqakdeqgb" path="res://audiences/audiences.tscn" id="7_tcuy4"]
+[ext_resource type="PackedScene" uid="uid://04do4388d38e" path="res://ui/pixel_font/pixel_font.tscn" id="10_ipjb6"]
+[ext_resource type="AudioStream" uid="uid://c2muxxk3lab6x" path="res://sound/hold.wav" id="11_051xi"]
+[ext_resource type="AudioStream" uid="uid://3uwp5lidpt5y" path="res://sound/kick.wav" id="12_2d3eu"]
+[ext_resource type="AudioStream" uid="uid://41e3wp3w10gc" path="res://sound/music.wav" id="13_w4vx1"]
+[ext_resource type="AudioStream" uid="uid://dtg3e56yrwfv3" path="res://sound/out.wav" id="14_cktw5"]
+[ext_resource type="Script" path="res://states/ready_state.gd" id="15_64o7c"]
+[ext_resource type="Script" path="res://states/shoot_state.gd" id="16_gdcme"]
+[ext_resource type="Script" path="res://states/miss_state.gd" id="17_dbsm8"]
+[ext_resource type="Script" path="res://states/win_state.gd" id="18_0aimn"]
+[ext_resource type="Script" path="res://states/lose_state.gd" id="19_dxi3r"]
+
+[sub_resource type="Animation" id="Animation_pldr3"]
+resource_name = "active"
+length = 10.0
+step = 0.01
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("States/Ready")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_set_text_get_ready"
+}, {
+"args": [],
+"method": &"_play_music"
+}, {
+"args": [],
+"method": &"_set_text_listen_clap"
+}, {
+"args": [],
+"method": &"_set_text_your_turn"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ecvfu"]
+resource_name = "passive"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nb5gh"]
+_data = {
+"active": SubResource("Animation_pldr3"),
+"passive": SubResource("Animation_ecvfu")
+}
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_3wdw0")
@@ -55,3 +103,48 @@ position = Vector2(161, 181)
 [node name="Score" parent="UI" instance=ExtResource("4_ufwcp")]
 
 [node name="Results" parent="UI" instance=ExtResource("5_32d14")]
+
+[node name="NoticeText" parent="UI" instance=ExtResource("10_ipjb6")]
+offset_right = 320.0
+offset_bottom = 45.0
+text = "Get Ready!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="Hold" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("11_051xi")
+
+[node name="Kick" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("12_2d3eu")
+
+[node name="Music" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("13_w4vx1")
+
+[node name="Out" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("14_cktw5")
+
+[node name="States" type="Node2D" parent="."]
+
+[node name="Ready" type="Node2D" parent="States"]
+script = ExtResource("15_64o7c")
+
+[node name="Animation" type="AnimationPlayer" parent="States/Ready"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_nb5gh")
+}
+autoplay = "passive"
+
+[node name="Shoot" type="Node2D" parent="States"]
+script = ExtResource("16_gdcme")
+
+[node name="Miss" type="Node2D" parent="States"]
+script = ExtResource("17_dbsm8")
+
+[node name="Win" type="Node2D" parent="States"]
+script = ExtResource("18_0aimn")
+
+[node name="Lose" type="Node2D" parent="States"]
+script = ExtResource("19_dxi3r")

@@ -8,5 +8,7 @@ static func get_team_data(team_name):
 	match team:
 		"liverpool":
 			return Liverpool.new()
+		"chelsea":
+			return Chelsea.new()
 		_:
 			return null

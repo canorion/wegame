@@ -1,18 +1,85 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgdbl8cqmlgva"]
+[gd_scene load_steps=10 format=3 uid="uid://dgdbl8cqmlgva"]
 
 [ext_resource type="Script" path="res://match/ball/ball.gd" id="1_64k3c"]
-[ext_resource type="Texture2D" uid="uid://du1g1cm0jsi4m" path="res://match/football_ball.png" id="1_b65yv"]
+[ext_resource type="Texture2D" uid="uid://du1g1cm0jsi4m" path="res://match/ball/football_ball.png" id="2_hcaol"]
+
+[sub_resource type="Animation" id="Animation_ljpyp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -12)]
+}
+
+[sub_resource type="Animation" id="Animation_h3bs1"]
+resource_name = "lose"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_4a3ij"]
+resource_name = "miss"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -12), Vector2(48, -97), Vector2(-49, -241)]
+}
+
+[sub_resource type="Animation" id="Animation_47230"]
+resource_name = "ready"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -12)]
+}
 
 [sub_resource type="Animation" id="Animation_gj61k"]
 resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -12), Vector2(48, -97)]
+}
 
-[sub_resource type="Animation" id="Animation_47230"]
-resource_name = "stand"
+[sub_resource type="Animation" id="Animation_cqgik"]
+resource_name = "win"
+loop_mode = 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0vw6"]
 _data = {
+"RESET": SubResource("Animation_ljpyp"),
+"lose": SubResource("Animation_h3bs1"),
+"miss": SubResource("Animation_4a3ij"),
+"ready": SubResource("Animation_47230"),
 "shoot": SubResource("Animation_gj61k"),
-"stand": SubResource("Animation_47230")
+"win": SubResource("Animation_cqgik")
 }
 
 [node name="Ball" type="Node2D"]
@@ -20,10 +87,10 @@ script = ExtResource("1_64k3c")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
-texture = ExtResource("1_b65yv")
+texture = ExtResource("2_hcaol")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_o0vw6")
 }
-autoplay = "stand"
+autoplay = "ready"

@@ -4,258 +4,256 @@
 [ext_resource type="PackedScene" uid="uid://cl5ixurao6p28" path="res://audiences/audience.tscn" id="2_e80dk"]
 
 [node name="Audiences" type="Node2D"]
-z_as_relative = false
-y_sort_enabled = true
 script = ExtResource("1_i1463")
 
 [node name="Audience" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-32, 0)
-
-[node name="Audience2" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-27, 0)
-
-[node name="Audience3" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-22, 0)
-
-[node name="Audience4" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-17, 0)
-
-[node name="Audience5" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-12, 0)
-
-[node name="Audience6" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-7, 0)
-
-[node name="Audience7" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-2, 0)
-
-[node name="Audience8" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(3, 0)
-
-[node name="Audience9" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(8, 0)
-
-[node name="Audience10" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(13, 0)
-
-[node name="Audience11" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(18, 0)
-
-[node name="Audience12" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(23, 0)
-
-[node name="Audience13" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(28, 0)
-
-[node name="Audience14" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(33, 0)
-
-[node name="Audience15" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-32, -5)
-
-[node name="Audience16" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-27, -5)
-
-[node name="Audience17" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-22, -5)
-
-[node name="Audience18" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-17, -5)
-
-[node name="Audience19" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-12, -5)
-
-[node name="Audience20" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-7, -5)
-
-[node name="Audience21" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-2, -5)
-
-[node name="Audience22" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(3, -5)
-
-[node name="Audience23" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(8, -5)
-
-[node name="Audience24" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(13, -5)
-
-[node name="Audience25" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(18, -5)
-
-[node name="Audience26" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(23, -5)
-
-[node name="Audience27" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(28, -5)
-
-[node name="Audience28" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(33, -5)
-
-[node name="Audience29" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-32, -10)
-
-[node name="Audience30" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-27, -10)
-
-[node name="Audience31" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-22, -10)
-
-[node name="Audience32" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-17, -10)
-
-[node name="Audience33" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-12, -10)
-
-[node name="Audience34" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-7, -10)
-
-[node name="Audience35" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-2, -10)
-
-[node name="Audience36" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(3, -10)
-
-[node name="Audience37" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(8, -10)
-
-[node name="Audience38" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(13, -10)
-
-[node name="Audience39" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(18, -10)
-
-[node name="Audience40" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(23, -10)
-
-[node name="Audience41" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(28, -10)
-
-[node name="Audience42" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(33, -10)
-
-[node name="Audience43" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-32, -15)
-
-[node name="Audience44" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-27, -15)
-
-[node name="Audience45" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-22, -15)
-
-[node name="Audience46" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-17, -15)
-
-[node name="Audience47" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-12, -15)
-
-[node name="Audience48" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-7, -15)
-
-[node name="Audience49" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-2, -15)
-
-[node name="Audience50" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(3, -15)
-
-[node name="Audience51" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(8, -15)
-
-[node name="Audience52" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(13, -15)
-
-[node name="Audience53" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(18, -15)
-
-[node name="Audience54" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(23, -15)
-
-[node name="Audience55" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(28, -15)
-
-[node name="Audience56" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(33, -15)
-
-[node name="Audience57" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-32, -20)
-
-[node name="Audience58" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-27, -20)
-
-[node name="Audience59" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-22, -20)
-
-[node name="Audience60" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-17, -20)
-
-[node name="Audience61" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-12, -20)
-
-[node name="Audience62" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-7, -20)
-
-[node name="Audience63" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(-2, -20)
-
-[node name="Audience64" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(3, -20)
-
-[node name="Audience65" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(8, -20)
-
-[node name="Audience66" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(13, -20)
-
-[node name="Audience67" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(18, -20)
-
-[node name="Audience68" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(23, -20)
-
-[node name="Audience69" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(28, -20)
-
-[node name="Audience70" parent="." instance=ExtResource("2_e80dk")]
-position = Vector2(33, -20)
-
-[node name="Audience71" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(-32, -25)
 
-[node name="Audience72" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience2" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(-27, -25)
 
-[node name="Audience73" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience3" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(-22, -25)
 
-[node name="Audience74" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience4" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(-17, -25)
 
-[node name="Audience75" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience5" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(-12, -25)
 
-[node name="Audience76" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience6" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(-7, -25)
 
-[node name="Audience77" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience7" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(-2, -25)
 
-[node name="Audience78" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience8" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(3, -25)
 
-[node name="Audience79" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience9" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(8, -25)
 
-[node name="Audience80" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience10" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(13, -25)
 
-[node name="Audience81" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience11" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(18, -25)
 
-[node name="Audience82" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience12" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(23, -25)
 
-[node name="Audience83" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience13" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(28, -25)
 
-[node name="Audience84" parent="." instance=ExtResource("2_e80dk")]
+[node name="Audience14" parent="." instance=ExtResource("2_e80dk")]
 position = Vector2(33, -25)
+
+[node name="Audience15" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-32, -20)
+
+[node name="Audience16" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-27, -20)
+
+[node name="Audience17" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-22, -20)
+
+[node name="Audience18" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-17, -20)
+
+[node name="Audience19" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-12, -20)
+
+[node name="Audience20" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-7, -20)
+
+[node name="Audience21" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-2, -20)
+
+[node name="Audience22" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(3, -20)
+
+[node name="Audience23" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(8, -20)
+
+[node name="Audience24" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(13, -20)
+
+[node name="Audience25" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(18, -20)
+
+[node name="Audience26" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(23, -20)
+
+[node name="Audience27" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(28, -20)
+
+[node name="Audience28" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(33, -20)
+
+[node name="Audience29" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-32, -15)
+
+[node name="Audience30" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-27, -15)
+
+[node name="Audience31" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-22, -15)
+
+[node name="Audience32" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-17, -15)
+
+[node name="Audience33" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-12, -15)
+
+[node name="Audience34" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-7, -15)
+
+[node name="Audience35" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-2, -15)
+
+[node name="Audience36" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(3, -15)
+
+[node name="Audience37" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(8, -15)
+
+[node name="Audience38" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(13, -15)
+
+[node name="Audience39" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(18, -15)
+
+[node name="Audience40" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(23, -15)
+
+[node name="Audience41" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(28, -15)
+
+[node name="Audience42" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(33, -15)
+
+[node name="Audience43" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-32, -10)
+
+[node name="Audience44" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-27, -10)
+
+[node name="Audience45" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-22, -10)
+
+[node name="Audience46" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-17, -10)
+
+[node name="Audience47" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-12, -10)
+
+[node name="Audience48" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-7, -10)
+
+[node name="Audience49" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-2, -10)
+
+[node name="Audience50" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(3, -10)
+
+[node name="Audience51" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(8, -10)
+
+[node name="Audience52" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(13, -10)
+
+[node name="Audience53" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(18, -10)
+
+[node name="Audience54" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(23, -10)
+
+[node name="Audience55" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(28, -10)
+
+[node name="Audience56" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(33, -10)
+
+[node name="Audience57" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-32, -5)
+
+[node name="Audience58" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-27, -5)
+
+[node name="Audience59" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-22, -5)
+
+[node name="Audience60" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-17, -5)
+
+[node name="Audience61" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-12, -5)
+
+[node name="Audience62" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-7, -5)
+
+[node name="Audience63" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-2, -5)
+
+[node name="Audience64" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(3, -5)
+
+[node name="Audience65" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(8, -5)
+
+[node name="Audience66" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(13, -5)
+
+[node name="Audience67" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(18, -5)
+
+[node name="Audience68" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(23, -5)
+
+[node name="Audience69" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(28, -5)
+
+[node name="Audience70" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(33, -5)
+
+[node name="Audience71" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-32, 0)
+
+[node name="Audience72" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-27, 0)
+
+[node name="Audience73" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-22, 0)
+
+[node name="Audience74" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-17, 0)
+
+[node name="Audience75" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-12, 0)
+
+[node name="Audience76" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-7, 0)
+
+[node name="Audience77" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(-2, 0)
+
+[node name="Audience78" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(3, 0)
+
+[node name="Audience79" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(8, 0)
+
+[node name="Audience80" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(13, 0)
+
+[node name="Audience81" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(18, 0)
+
+[node name="Audience82" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(23, 0)
+
+[node name="Audience83" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(28, 0)
+
+[node name="Audience84" parent="." instance=ExtResource("2_e80dk")]
+position = Vector2(33, 0)
