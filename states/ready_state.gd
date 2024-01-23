@@ -6,8 +6,14 @@ extends Node2D
 var stage = null
 var current_turn = ""
 
+var window = null
+
 
 func _ready():
+	if OS.has_feature("web"):
+		window = JavaScriptBridge.get_interface("window")
+		_start_recording()
+	
 	anim.animation_finished.connect(_on_anim_finished)
 
 
@@ -51,3 +57,13 @@ func _on_anim_finished(anim_name):
 		stage.change_state("shoot")
 	else:
 		stage.change_state("miss")
+
+
+func _start_recording():
+	if OS.has_feature("web"):
+		window.startRecording()
+
+
+func _start_periodic():
+	if OS.has_feature("web"):
+		window.startPeriodic()

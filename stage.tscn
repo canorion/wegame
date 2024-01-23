@@ -31,8 +31,8 @@ tracks/0/path = NodePath("States/Ready")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 2, 3.95, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"_set_text_get_ready"
@@ -42,6 +42,9 @@ tracks/0/keys = {
 }, {
 "args": [],
 "method": &"_set_text_listen_clap"
+}, {
+"args": [],
+"method": &"_start_recording"
 }, {
 "args": [],
 "method": &"_set_text_your_turn"
@@ -103,9 +106,14 @@ position = Vector2(161, 181)
 [node name="Score" parent="UI" instance=ExtResource("4_ufwcp")]
 
 [node name="Results" parent="UI" instance=ExtResource("5_32d14")]
+anchors_preset = 8
 
 [node name="NoticeText" parent="UI" instance=ExtResource("10_ipjb6")]
-offset_right = 320.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
 offset_bottom = 45.0
 text = "Get Ready!"
 horizontal_alignment = 1
@@ -148,3 +156,6 @@ script = ExtResource("18_0aimn")
 
 [node name="Lose" type="Node2D" parent="States"]
 script = ExtResource("19_dxi3r")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(160, 90)
