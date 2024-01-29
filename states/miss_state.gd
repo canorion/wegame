@@ -15,5 +15,4 @@ func init(s):
 	stage.ball.anim.play("miss")
 	
 	var anim_name = await stage.ball.anim.animation_finished
-	if anim_name == "miss":
-		stage.change_state("lose")
+	stage.check_result()

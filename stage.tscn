@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccb1kc7a3mpay"]
+[gd_scene load_steps=34 format=3 uid="uid://ccb1kc7a3mpay"]
 
 [ext_resource type="Script" path="res://stage.gd" id="1_3wdw0"]
 [ext_resource type="Texture2D" uid="uid://v8sujqtxfoyu" path="res://match/background.png" id="1_kjfvj"]
@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://dgn0pqakdeqgb" path="res://audiences/audiences.tscn" id="7_tcuy4"]
 [ext_resource type="PackedScene" uid="uid://04do4388d38e" path="res://ui/pixel_font/pixel_font.tscn" id="10_ipjb6"]
 [ext_resource type="AudioStream" uid="uid://c2muxxk3lab6x" path="res://sound/hold.wav" id="11_051xi"]
+[ext_resource type="Texture2D" uid="uid://bosh0q5ji222g" path="res://ui/ui.png" id="11_jio2v"]
 [ext_resource type="AudioStream" uid="uid://3uwp5lidpt5y" path="res://sound/kick.wav" id="12_2d3eu"]
+[ext_resource type="Texture2D" uid="uid://d080orjhnowxy" path="res://ui/db.png" id="12_j4c1u"]
 [ext_resource type="AudioStream" uid="uid://41e3wp3w10gc" path="res://sound/music.wav" id="13_w4vx1"]
 [ext_resource type="AudioStream" uid="uid://dtg3e56yrwfv3" path="res://sound/out.wav" id="14_cktw5"]
 [ext_resource type="Script" path="res://states/ready_state.gd" id="15_64o7c"]
@@ -19,6 +21,39 @@
 [ext_resource type="Script" path="res://states/miss_state.gd" id="17_dbsm8"]
 [ext_resource type="Script" path="res://states/win_state.gd" id="18_0aimn"]
 [ext_resource type="Script" path="res://states/lose_state.gd" id="19_dxi3r"]
+[ext_resource type="AudioStream" uid="uid://beygw2y0sevdl" path="res://sound/intro.wav" id="22_hj0dd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25wvj"]
+atlas = ExtResource("1_kjfvj")
+region = Rect2(0, 1, 110, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmfif"]
+atlas = ExtResource("1_kjfvj")
+region = Rect2(236, 89, 76, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53qea"]
+atlas = ExtResource("1_kjfvj")
+region = Rect2(317, 31, 3, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jch5g"]
+atlas = ExtResource("1_kjfvj")
+region = Rect2(122, 45, 76, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag28w"]
+atlas = ExtResource("1_kjfvj")
+region = Rect2(0, 111, 76, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1eewe"]
+atlas = ExtResource("1_kjfvj")
+region = Rect2(0, 179, 110, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r756p"]
+atlas = ExtResource("11_jio2v")
+region = Rect2(125, 142, 10, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ive3f"]
+atlas = ExtResource("11_jio2v")
+region = Rect2(136, 142, 10, 102)
 
 [sub_resource type="Animation" id="Animation_pldr3"]
 resource_name = "active"
@@ -66,9 +101,133 @@ script = ExtResource("1_3wdw0")
 
 [node name="Background" type="Node2D" parent="."]
 
+[node name="Up" type="Sprite2D" parent="Background"]
+position = Vector2(160.258, -38.5377)
+scale = Vector2(8.34105, 174.702)
+texture = SubResource("AtlasTexture_25wvj")
+
 [node name="Background" type="Sprite2D" parent="Background"]
 position = Vector2(160, 90)
 texture = ExtResource("1_kjfvj")
+
+[node name="Sign" type="Sprite2D" parent="Background"]
+position = Vector2(350, 103)
+texture = SubResource("AtlasTexture_dmfif")
+
+[node name="Sky" type="Sprite2D" parent="Background"]
+position = Vector2(469.473, 38)
+scale = Vector2(99.9821, 1)
+texture = SubResource("AtlasTexture_53qea")
+
+[node name="Sky2" type="Sprite2D" parent="Background"]
+position = Vector2(-149.527, 38)
+scale = Vector2(99.9821, 1)
+texture = SubResource("AtlasTexture_53qea")
+
+[node name="Audience" type="Sprite2D" parent="Background"]
+position = Vector2(310, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience2" type="Sprite2D" parent="Background"]
+position = Vector2(385, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience3" type="Sprite2D" parent="Background"]
+position = Vector2(460, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience4" type="Sprite2D" parent="Background"]
+position = Vector2(535, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience5" type="Sprite2D" parent="Background"]
+position = Vector2(610, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience6" type="Sprite2D" parent="Background"]
+position = Vector2(-290, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience7" type="Sprite2D" parent="Background"]
+position = Vector2(-215, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience8" type="Sprite2D" parent="Background"]
+position = Vector2(-140, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience9" type="Sprite2D" parent="Background"]
+position = Vector2(-65, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Audience10" type="Sprite2D" parent="Background"]
+position = Vector2(10, 67)
+texture = SubResource("AtlasTexture_jch5g")
+
+[node name="Sign2" type="Sprite2D" parent="Background"]
+position = Vector2(426, 103)
+texture = SubResource("AtlasTexture_dmfif")
+
+[node name="Sign3" type="Sprite2D" parent="Background"]
+position = Vector2(502, 103)
+texture = SubResource("AtlasTexture_dmfif")
+
+[node name="Sign4" type="Sprite2D" parent="Background"]
+position = Vector2(578, 103)
+texture = SubResource("AtlasTexture_dmfif")
+
+[node name="Sign5" type="Sprite2D" parent="Background"]
+position = Vector2(-258, 103)
+texture = SubResource("AtlasTexture_dmfif")
+
+[node name="Sign6" type="Sprite2D" parent="Background"]
+position = Vector2(-182, 103)
+texture = SubResource("AtlasTexture_dmfif")
+
+[node name="Sign7" type="Sprite2D" parent="Background"]
+position = Vector2(-106, 103)
+texture = SubResource("AtlasTexture_dmfif")
+
+[node name="Sign8" type="Sprite2D" parent="Background"]
+position = Vector2(-30, 103)
+texture = SubResource("AtlasTexture_dmfif")
+
+[node name="Arena" type="Sprite2D" parent="Background"]
+position = Vector2(581, 145.5)
+texture = SubResource("AtlasTexture_ag28w")
+
+[node name="Arena2" type="Sprite2D" parent="Background"]
+position = Vector2(507, 145.5)
+texture = SubResource("AtlasTexture_ag28w")
+
+[node name="Arena3" type="Sprite2D" parent="Background"]
+position = Vector2(432, 145.5)
+texture = SubResource("AtlasTexture_ag28w")
+
+[node name="Arena4" type="Sprite2D" parent="Background"]
+position = Vector2(357, 145.5)
+texture = SubResource("AtlasTexture_ag28w")
+
+[node name="Arena5" type="Sprite2D" parent="Background"]
+position = Vector2(-37, 145.5)
+texture = SubResource("AtlasTexture_ag28w")
+
+[node name="Arena6" type="Sprite2D" parent="Background"]
+position = Vector2(-111, 145.5)
+texture = SubResource("AtlasTexture_ag28w")
+
+[node name="Arena7" type="Sprite2D" parent="Background"]
+position = Vector2(-186, 145.5)
+texture = SubResource("AtlasTexture_ag28w")
+
+[node name="Arena8" type="Sprite2D" parent="Background"]
+position = Vector2(-261, 145.5)
+texture = SubResource("AtlasTexture_ag28w")
+
+[node name="Down" type="Sprite2D" parent="Background"]
+position = Vector2(160.258, 307.572)
+scale = Vector2(8.34105, 255.144)
+texture = SubResource("AtlasTexture_1eewe")
 
 [node name="Audiences" type="Node2D" parent="Background"]
 
@@ -87,6 +246,30 @@ position = Vector2(235, 85)
 [node name="Audience5" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
 position = Vector2(309, 85)
 
+[node name="Audience6" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(385, 85)
+
+[node name="Audience7" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(459, 85)
+
+[node name="Audience8" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(535, 85)
+
+[node name="Audience9" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(609, 85)
+
+[node name="Audience10" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(-290, 85)
+
+[node name="Audience11" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(-216, 85)
+
+[node name="Audience12" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(-140, 85)
+
+[node name="Audience13" parent="Background/Audiences" instance=ExtResource("7_tcuy4")]
+position = Vector2(-66, 85)
+
 [node name="Goal" parent="Background" instance=ExtResource("6_bpc2c")]
 position = Vector2(161, 125)
 
@@ -96,28 +279,70 @@ position = Vector2(161, 125)
 position = Vector2(161, 132)
 
 [node name="Ball" parent="Match" instance=ExtResource("7_h2gmw")]
-position = Vector2(161, 176)
+position = Vector2(161, 170)
 
 [node name="Shooter" parent="Match" instance=ExtResource("6_bja6a")]
-position = Vector2(161, 181)
+position = Vector2(141, 170)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Score" parent="UI" instance=ExtResource("4_ufwcp")]
+grow_vertical = 1
 
 [node name="Results" parent="UI" instance=ExtResource("5_32d14")]
-anchors_preset = 8
 
 [node name="NoticeText" parent="UI" instance=ExtResource("10_ipjb6")]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -160.0
+offset_top = 35.0
 offset_right = 160.0
-offset_bottom = 45.0
+offset_bottom = 55.0
+grow_horizontal = 2
 text = "Get Ready!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioProgress" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 4.0
+offset_right = 30.0
+offset_bottom = 152.0
+
+[node name="Progress" type="TextureProgressBar" parent="UI/AudioProgress"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 52.0
+offset_right = 22.0
+offset_bottom = 154.0
+max_value = 1.0
+step = 0.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_r756p")
+texture_progress = SubResource("AtlasTexture_ive3f")
+
+[node name="Icon" type="TextureRect" parent="UI/AudioProgress"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 35.0
+offset_right = 24.0
+offset_bottom = 50.0
+texture = ExtResource("12_j4c1u")
+expand_mode = 1
+
+[node name="StartText" parent="UI" instance=ExtResource("10_ipjb6")]
+offset_left = 24.0
+offset_top = 115.0
+offset_right = 312.0
+offset_bottom = 172.0
+text = "Press ENTER key to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Sound" type="Node" parent="."]
 
@@ -159,3 +384,7 @@ script = ExtResource("19_dxi3r")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(160, 90)
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_hj0dd")
+autoplay = true

@@ -12,7 +12,7 @@ var scores = {
 	"away": 0,
 }
 
-var score_limit = 2
+var score_limit = 3
 
 
 func init_team_logos(home_logo_tex, away_logo_tex):

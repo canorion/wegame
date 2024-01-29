@@ -19,7 +19,7 @@ async function sendAudioChunks(audioChunks) {
   formData.append('audio', new Blob(audioChunks, { type: 'audio/webm' }));
 
   try {
-	const response = await fetch('https://wegame.voiceover.market/voice-level', {
+	const response = await fetch('http://localhost:9000/voice-level', {
 	  method: 'POST',
 	  body: formData,
 	});
@@ -27,7 +27,7 @@ async function sendAudioChunks(audioChunks) {
 	if (response.ok) {
 	  let amp=(await response.json()).normalized_amplitude;
 	  console.log("amplitude",amp);
-	  //updateDBFSLevel(amp);
+	  godotBridge.test({message:"db_level", value:amp});
 
 	} else {
 	  console.error('Error sending audio:', response.status, response.statusText);

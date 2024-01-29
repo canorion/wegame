@@ -15,5 +15,5 @@ func init(s):
 	stage.ball.anim.play("shoot")
 	
 	var anim_name = await stage.ball.anim.animation_finished
-	if anim_name == "shoot":
-		stage.change_state("win")
+	
+	stage.check_result()

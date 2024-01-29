@@ -49,14 +49,20 @@ func _on_anim_finished(anim_name):
 	#WebRequest.request_match_result()
 	#var req = await WebRequest.match_result_req.request_completed
 	#var status = JSON.parse_string(req[3].get_string_from_utf8())
+	#var status = {
+		#"win": "away",
+	#}
+	
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	
 	var status = {
-		"win": "away",
+		"db_level": random.randf_range(0.2, 0.3),
 	}
 	
-	if status.win == current_turn:
-		stage.change_state("shoot")
-	else:
-		stage.change_state("miss")
+	stage.results[current_turn] = status.db_level
+	
+	stage.check_cycle()
 
 
 func _start_recording():

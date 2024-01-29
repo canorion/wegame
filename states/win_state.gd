@@ -35,5 +35,3 @@ func init(s):
 	stage.score_ui.hide_score()
 	await stage.score_ui.anim.animation_finished
 	stage.results_ui.hide_text()
-	
-	stage.check_cycle()
