@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Recorder</title>
+  <style>
+    .dbfs-graphic {
+      width: 300px;
+      height: 20px;
+      border: 1px solid #000;
+      background-color: #f0f0f0;
+      position: relative;
+    }
+
+    .dbfs-bar {
+      width: 0; /* Initial width is 0 */
+      height: 100%;
+      background-color: #00cc00; /* Change color based on level */
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: width 0.1s ease; /* Add a transition effect for smoother updates */
+    }
+  </style>
+  <script>
+    let mediaRecorder;
+    let audioChunks = [];
+    
+    function updateDBFSLevel(level) {
+      const dbfsBar = document.querySelector('.dbfs-bar');
+      dbfsBar.style.width = level + '%'; // Set width based on the dBFS level
+    }
+
+    async function sendAudioChunks() {
+      const formData = new FormData();
+      formData.append('audio', new Blob(audioChunks, { type: 'audio/webm' }));
+
+      try {
+        const response = await fetch('http://localhost:9000/clap', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          console.log(await response.json());
+        } else {
+          console.error('Error sending audio:', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Error sending audio:', error);
+      }
+    }
+
+    function startRecording(duration) {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+          mediaRecorder = new MediaRecorder(stream);
+
+          mediaRecorder.addEventListener('dataavailable', (event) => {
+            if (event.data.size > 0) {
+              audioChunks.push(event.data);
+            }
+          });
+
+          mediaRecorder.addEventListener('stop', () => {
+            sendAudioChunks();
+            audioChunks = []; // Clear the chunks after sending
+          });
+
+          // Record for the specified duration and then stop
+          setTimeout(() => {
+            mediaRecorder.stop();
+          }, duration);
+
+          mediaRecorder.start();
+
+          // Continuously monitor audio input and update the peek value
+          const audioContext = new AudioContext();
+          const analyser = audioContext.createAnalyser();
+          const microphone = audioContext.createMediaStreamSource(stream);
+          microphone.connect(analyser);
+
+          analyser.fftSize = 256;
+          const bufferLength = analyser.frequencyBinCount;
+          const dataArray = new Uint8Array(bufferLength);
+
+          const updateDBFS = () => {
+            analyser.getByteFrequencyData(dataArray);
+            const maxLevel = Math.max(...dataArray);
+            const normalizedLevel = (maxLevel / 255) * 100; // Normalize to percentage
+            updateDBFSLevel(normalizedLevel);
+            requestAnimationFrame(updateDBFS);
+          };
+
+          updateDBFS();
+        })
+        .catch(error => {
+          console.error('Error accessing microphone:', error);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Automatically start recording when the page loads
+      startRecording(Infinity); // Record indefinitely
+
+      const startRecordingButton = document.getElementById('startRecordingButton');
+      if (startRecordingButton) {
+        startRecordingButton.addEventListener('click', () => {
+          // Start recording for 1 second when the button is clicked
+          startRecording(3000); // 1000 milliseconds (1 second)
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <button id="startRecordingButton">Start Recording for 1 second</button>
+  <div class="dbfs-graphic">
+    <div class="dbfs-bar"></div>
+  </div>
+</body>
+</html>

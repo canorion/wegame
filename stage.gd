@@ -4,7 +4,8 @@ extends Node2D
 @onready var score_ui = $UI/Score
 @onready var results_ui = $UI/Results
 @onready var notice_text = $UI/NoticeText
-@onready var audio_progress = $UI/AudioProgress
+@onready var audio_progress = $UI/AudioProgress/Progress
+@onready var ready_text = $UI/ReadyText
 
 @onready var sounds = {
 	"hold": $Sound/Hold,
@@ -24,11 +25,12 @@ var home_team_name = ""
 var away_team_name = ""
 
 var results = {
-	"home": 0,
-	"away": 0,
+	"home": -1,
+	"away": -1,
 }
 
 var current_turn = "home"
+var current_shooter = "home"
 
 @onready var states = {
 	"ready": $States/Ready,
@@ -37,6 +39,8 @@ var current_turn = "home"
 	"win": $States/Win,
 	"lose": $States/Lose,
 }
+
+var is_started = false
 
 
 func _ready():
@@ -47,14 +51,20 @@ func _ready():
 
 
 func _unhandled_input(event):
+	if is_started:
+		return
+	
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ENTER:
+			is_started = true
 			_start()
 
 
 func _on_js_message_arrived(msg_dict):
-	if msg_dict.message == "db_level":
+	if msg_dict.message == "db_level_update":
 		_update_audio_progress_value(msg_dict.value)
+	elif msg_dict.message == "db_level":
+		check_cycle(msg_dict.value)
 
 
 func _update_audio_progress_value(value):
@@ -79,7 +89,19 @@ func _start():
 	change_state("ready")
 
 
-func check_cycle():
+func get_other_side(value):
+	if value == "home":
+		return "away"
+	else:
+		return "home"
+
+
+func check_cycle(value):
+	#results[current_turn] = value
+	var r = RandomNumberGenerator.new()
+	r.randomize()
+	results[current_turn] = r.randf_range(0, 1)
+	
 	if current_turn == "home":
 		current_turn = "away"
 		
@@ -95,24 +117,67 @@ func check_cycle():
 		get_node("UI/Score/Container/HomePointer").visible = false
 		get_node("UI/Score/Container/AwayPointer").visible = false
 		
-		if results.home > results.away:
-			score_ui.add_score("home")
+		if results[current_shooter] > results[get_other_side(current_shooter)]:
+			score_ui.add_score(current_shooter)
 			change_state("shoot")
-		elif results.home < results.away:
-			score_ui.add_score("away")
+		elif results[current_shooter] < results[get_other_side(current_shooter)]:
 			change_state("miss")
+		else:
+			calculate_results()
+
+
+func calculate_results():
+	if score_ui.current_set >= score_ui.score_limit - 1:
+		check_result()
+	else:
+		score_ui.current_set += 1
+		current_shooter = get_other_side(current_shooter)
+		change_state("ready")
+		get_node("UI/Score/Container/HomePointer").visible = true
+		get_node("UI/Score/Container/HomePointer/Animation").play("active")
+		
+		if current_shooter == "home":
+			$Match/Shooter.init_shooter(home_team_data.get_shooter_atlas())
+			$Match/Keeper.init_keeper(away_team_data.get_keeper_atlas())
+		else:
+			$Match/Shooter.init_shooter(away_team_data.get_shooter_atlas())
+			$Match/Keeper.init_keeper(home_team_data.get_keeper_atlas())
+		
+		results["home"] = -1
+		results["away"] = -1
 
 
 func check_result():
-	if score_ui.scores.home >= score_ui.score_limit:
+	#if results["home"] == -1 or results["away"] == -1:
+		#change_state("ready")
+		#if current_turn == "home":
+			#get_node("UI/Score/Container/AwayPointer").visible = true
+			#get_node("UI/Score/Container/AwayPointer/Animation").play("active")
+		#else:
+			#get_node("UI/Score/Container/HomePointer").visible = true
+			#get_node("UI/Score/Container/HomePointer/Animation").play("active")
+		#
+		#return
+	
+	if score_ui.scores.home > score_ui.scores.away:
 		results_ui.show_home_win_text()
-	elif score_ui.scores.away >= score_ui.score_limit:
+	elif score_ui.scores.away > score_ui.scores.home:
 		results_ui.show_away_win_text()
 	else:
-		change_state("ready")
-		
-		get_node("UI/Score/Container/HomePointer").visible = true
-		get_node("UI/Score/Container/HomePointer/Animation").play("active")
+		results_ui.show_draw_text()
+	
+	#if score_ui.scores.home >= score_ui.score_limit:
+		#results_ui.show_home_win_text()
+	#elif score_ui.scores.away >= score_ui.score_limit:
+		#results_ui.show_away_win_text()
+	#else:
+		#change_state("ready")
+		#
+		#get_node("UI/Score/Container/HomePointer").visible = true
+		#get_node("UI/Score/Container/HomePointer/Animation").play("active")
+	#
+	#results["home"] = -1
+	#results["away"] = -1
 
 
 func change_state(state):

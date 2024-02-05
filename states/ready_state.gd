@@ -10,11 +10,12 @@ var window = null
 
 
 func _ready():
-	if OS.has_feature("web"):
-		window = JavaScriptBridge.get_interface("window")
-		_start_recording()
+	#anim.animation_finished.connect(_on_anim_finished)
 	
-	anim.animation_finished.connect(_on_anim_finished)
+	if not OS.has_feature("web"):
+		return
+	
+	window = JavaScriptBridge.get_interface("window")
 
 
 func init(s):
@@ -22,7 +23,12 @@ func init(s):
 	stage.notice_text.text = ""
 	current_turn = stage.current_turn
 	
+	anim.stop(true)
 	anim.play("active")
+	
+	stage.keeper.anim.stop(true)
+	stage.shooter.anim.stop(true)
+	stage.ball.anim.stop(true)
 	
 	stage.keeper.anim.play("ready")
 	stage.shooter.anim.play("ready")
@@ -45,24 +51,8 @@ func _play_music():
 	stage.play_sound("music")
 
 
-func _on_anim_finished(anim_name):
-	#WebRequest.request_match_result()
-	#var req = await WebRequest.match_result_req.request_completed
-	#var status = JSON.parse_string(req[3].get_string_from_utf8())
-	#var status = {
-		#"win": "away",
-	#}
-	
-	var random = RandomNumberGenerator.new()
-	random.randomize()
-	
-	var status = {
-		"db_level": random.randf_range(0.2, 0.3),
-	}
-	
-	stage.results[current_turn] = status.db_level
-	
-	stage.check_cycle()
+#func _on_anim_finished(anim_name):
+	#stage.check_cycle()
 
 
 func _start_recording():
