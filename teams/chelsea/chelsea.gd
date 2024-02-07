@@ -29,7 +29,15 @@ func get_logo_atlas():
 func get_shooter_atlas():
 	var team_atlas = AtlasTexture.new()
 	team_atlas.atlas = load("res://teams/chelsea/chelsea.png")
-	team_atlas.set_region(Rect2(15, 0, 29, 45))
+	team_atlas.set_region(Rect2(0, 126, 65, 130))
+	
+	return team_atlas
+
+
+func get_shooter_shoot_atlas():
+	var team_atlas = AtlasTexture.new()
+	team_atlas.atlas = load("res://teams/chelsea/chelsea.png")
+	team_atlas.set_region(Rect2(62, 126, 65, 130))
 	
 	return team_atlas
 

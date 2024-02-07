@@ -97,10 +97,11 @@ func get_other_side(value):
 
 
 func check_cycle(value):
-	#results[current_turn] = value
-	var r = RandomNumberGenerator.new()
-	r.randomize()
-	results[current_turn] = r.randf_range(0, 1)
+	results[current_turn] = value
+	
+	#var r = RandomNumberGenerator.new()
+	#r.randomize()
+	#results[current_turn] = r.randf_range(0, 1)
 	
 	if current_turn == "home":
 		current_turn = "away"
@@ -137,10 +138,16 @@ func calculate_results():
 		get_node("UI/Score/Container/HomePointer/Animation").play("active")
 		
 		if current_shooter == "home":
-			$Match/Shooter.init_shooter(home_team_data.get_shooter_atlas())
+			$Match/Shooter.init_shooter(
+				home_team_data.get_shooter_atlas(),
+				home_team_data.get_shooter_shoot_atlas()
+			)
 			$Match/Keeper.init_keeper(away_team_data.get_keeper_atlas())
 		else:
-			$Match/Shooter.init_shooter(away_team_data.get_shooter_atlas())
+			$Match/Shooter.init_shooter(
+				away_team_data.get_shooter_atlas(),
+				away_team_data.get_shooter_shoot_atlas()
+			)
 			$Match/Keeper.init_keeper(home_team_data.get_keeper_atlas())
 		
 		results["home"] = -1
@@ -193,9 +200,11 @@ func _fetch_and_init_team_data():
 	#var req = await WebRequest.team_init_req.request_completed
 	#var teams = JSON.parse_string(req[3].get_string_from_utf8())
 	
+	var window = JavaScriptBridge.get_interface("window")
+	
 	var teams = {
-		"home_team_name": "liverpool",
-		"away_team_name": "chelsea",
+		"home_team_name": window.getHomeTeam(),
+		"away_team_name": window.getAwayTeam(),
 	}
 	
 	var home_team_name = teams.home_team_name
@@ -216,7 +225,10 @@ func _fetch_and_init_team_data():
 				home_team_data.get_flag_atlas(),
 				away_team_data.get_flag_atlas())
 	
-	$Match/Shooter.init_shooter(home_team_data.get_shooter_atlas())
+	$Match/Shooter.init_shooter(
+		home_team_data.get_shooter_atlas(),
+		home_team_data.get_shooter_shoot_atlas()
+	)
 	$Match/Keeper.init_keeper(away_team_data.get_keeper_atlas())
 	$UI/Score.init_team_logos(
 			home_team_data.get_logo_atlas(),
