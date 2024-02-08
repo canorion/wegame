@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Audio Recorder</title>
@@ -13,25 +14,28 @@
     }
 
     .dbfs-bar {
-      width: 0; /* Initial width is 0 */
+      width: 0;
+      /* Initial width is 0 */
       height: 100%;
-      background-color: #00cc00; /* Change color based on level */
+      background-color: #00cc00;
+      /* Change color based on level */
       position: absolute;
       top: 0;
       left: 0;
-      transition: width 0.1s ease; /* Add a transition effect for smoother updates */
+      transition: width 0.1s ease;
+      /* Add a transition effect for smoother updates */
     }
   </style>
   <script>
-    let mediaRecorder;
-    let audioChunks = [];
-    
+    var deviceId = "default";
     function updateDBFSLevel(level) {
       const dbfsBar = document.querySelector('.dbfs-bar');
       dbfsBar.style.width = level + '%'; // Set width based on the dBFS level
     }
 
-    async function sendAudioChunks() {
+    /*Clap Analysis*/
+    async function sendAudioChunks(audioChunks) {
+      logAudioPageAsBlob(audioChunks);
       const formData = new FormData();
       formData.append('audio', new Blob(audioChunks, { type: 'audio/webm' }));
 
@@ -50,12 +54,95 @@
         console.error('Error sending audio:', error);
       }
     }
+    function logAudioPageAsBlob(audioChunks) {
+      const blob = new Blob(audioChunks, { type: 'audio/webm' });
 
-    function startRecording(duration) {
-      navigator.mediaDevices.getUserMedia({ audio: true })
+      // Create the div element
+      var audioPlayerDiv = document.createElement('div');
+      audioPlayerDiv.id = 'audioPlayer';
+      audioPlayerDiv.style.position = 'fixed';
+      audioPlayerDiv.style.zIndex = 1000;
+
+      // Create the audio element
+      var audioElement = document.createElement('audio');
+      audioElement.id = 'player';
+      audioElement.controls = true;
+
+      // Append the audio element to the div
+      audioPlayerDiv.appendChild(audioElement);
+
+      // Append the div to the body
+      document.body.appendChild(audioPlayerDiv);
+
+      // Create a source element and set the Blob URL as the source
+      const source = document.createElement('source');
+      source.src = URL.createObjectURL(blob);
+      source.type = 'audio/webm';
+
+      // Append the source element to the audio element
+      audioElement.appendChild(source);
+    }
+
+    function listAndChooseMicrophone() {
+      return new Promise((resolve, reject) => {
+        navigator.mediaDevices.enumerateDevices()
+          .then(devices => {
+            const audioDevices = devices.filter(device => device.kind === 'audioinput');
+
+            if (audioDevices.length === 0) {
+              console.error('No microphone devices found.');
+              reject('default');
+              return;
+            }
+            //remove default device
+            audioDevices.shift();
+            if (audioDevices.length === 1) {
+              resolve(audioDevices[0].deviceId);
+              return;
+            }
+
+            // Present the list of microphones to the user for selection
+            const selectedDeviceId = promptMicrophoneSelection(audioDevices);
+
+            if (selectedDeviceId) {
+              resolve(selectedDeviceId);
+            } else {
+              console.error('User canceled microphone selection.');
+              reject('default')
+            }
+          })
+          .catch(error => {
+            console.error('Error enumerating audio devices:', error);
+          });
+      });
+    }
+
+    function promptMicrophoneSelection(audioDevices) {
+      const options = audioDevices.map(device => ({
+        label: device.label || `Microphone ${device.deviceId}`,
+        value: device.deviceId,
+      }));
+
+      const selection = prompt(options.map((opt, index) => `${index + 1}. ${opt.label}`).join('\n'));
+
+      if (selection && Number.isInteger(parseInt(selection)) && parseInt(selection) >= 1 && parseInt(selection) <= options.length) {
+        return options[parseInt(selection) - 1].value;
+      }
+
+      return null; // User canceled or provided invalid input
+    }
+
+
+
+
+    //bu fonksiyon mikrosonfdan ses parçası kaydedip clap  analiz servisine gönderiyor bunu şut atarken çağıracağız
+    function startClapAnalysis() {
+      var mediaRecorder;
+      var audioChunks = [];
+
+      navigator.mediaDevices.getUserMedia({ audio: { deviceId: deviceId ? { exact: deviceId } : undefined, } })
         .then(stream => {
           mediaRecorder = new MediaRecorder(stream);
-
           mediaRecorder.addEventListener('dataavailable', (event) => {
             if (event.data.size > 0) {
               audioChunks.push(event.data);
@@ -63,18 +150,24 @@
           });
 
           mediaRecorder.addEventListener('stop', () => {
-            sendAudioChunks();
-            audioChunks = []; // Clear the chunks after sending
+            sendAudioChunks(audioChunks);
+            audioChunks = [];
           });
 
-          // Record for the specified duration and then stop
+          mediaRecorder.start();
           setTimeout(() => {
             mediaRecorder.stop();
-          }, duration);
+          }, 3000);
+        })
+        .catch(error => {
+          console.error('Error accessing microphone:', error);
+        });
+    }
 
-          mediaRecorder.start();
-
-          // Continuously monitor audio input and update the peek value
+    //bu fonksiyonu sayfa yüklendiğinde çağırıyoruz sürekli bir şekilde mikrofondan gelen sesi analiz edip ses seviyesini güncelliyor
+    function startVolumeterAnalyze() {
+      navigator.mediaDevices.getUserMedia({ audio: { deviceId: deviceId ? { exact: deviceId } : undefined, } })
+        .then(stream => {
           const audioContext = new AudioContext();
           const analyser = audioContext.createAnalyser();
           const microphone = audioContext.createMediaStreamSource(stream);
@@ -98,25 +191,27 @@
           console.error('Error accessing microphone:', error);
         });
     }
+    document.addEventListener('DOMContentLoaded', async () => {
+      deviceId = await listAndChooseMicrophone();
+      console.log(deviceId);
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // Automatically start recording when the page loads
-      startRecording(Infinity); // Record indefinitely
+      startVolumeterAnalyze();
 
       const startRecordingButton = document.getElementById('startRecordingButton');
       if (startRecordingButton) {
         startRecordingButton.addEventListener('click', () => {
-          // Start recording for 1 second when the button is clicked
-          startRecording(3000); // 1000 milliseconds (1 second)
+          startClapAnalysis();
         });
       }
     });
   </script>
 </head>
+
 <body>
   <button id="startRecordingButton">Start Recording for 1 second</button>
   <div class="dbfs-graphic">
     <div class="dbfs-bar"></div>
   </div>
 </body>
+
 </html>

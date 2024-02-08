@@ -41,11 +41,15 @@ var current_shooter = "home"
 }
 
 var is_started = false
+var window = null
 
 
 func _ready():
 	if not _fetch_and_init_team_data():
 		return
+	
+	window = JavaScriptBridge.get_interface("window")
+	window.startVolumeterAnalyze()
 	
 	WebListener.js_message_arrived.connect(_on_js_message_arrived)
 
@@ -168,10 +172,13 @@ func check_result():
 	
 	if score_ui.scores.home > score_ui.scores.away:
 		results_ui.show_home_win_text()
+		notice_text.text = ""
 	elif score_ui.scores.away > score_ui.scores.home:
 		results_ui.show_away_win_text()
+		notice_text.text = ""
 	else:
 		results_ui.show_draw_text()
+		notice_text.text = ""
 	
 	#if score_ui.scores.home >= score_ui.score_limit:
 		#results_ui.show_home_win_text()

@@ -10,6 +10,8 @@ import scipy
 from scipy.io.wavfile import write
 from scipy.io import wavfile
 from pydub import AudioSegment
+from pydub.effects import normalize
+
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -22,28 +24,29 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def read_audio_data(file_contents):
+def read_audio_data1(file_contents):
+    audio_buffer = io.BytesIO(file_contents)
+    audio_data = AudioSegment.from_file(audio_buffer)
+    original_sample_rate = audio_data.frame_rate
+    audio_data_s16 = audio_data.set_sample_width(2).set_frame_rate(16000)
+    return audio_data_s16, 16000
+
+def read_audio_data2(file_contents):
     audio_buffer = io.BytesIO(file_contents)
     audio_data = AudioSegment.from_file(audio_buffer)
     original_sample_rate = audio_data.frame_rate
     
-    # Print information about the original WAV file
-    #print("Original Duration:", audio_data.duration_seconds, "seconds")
-    #print("Original Sample Width:", audio_data.sample_width)
-    #print("Original Frame Rate:", original_sample_rate)
+    # Volume normalization
+    normalized_audio = normalize(audio_data)
+
+    # Noise reduction (optional)
+    # You can apply additional noise reduction techniques if needed
     
     # Convert to s16 format with a sample rate of 16000 Hz
-    audio_data_s16 = audio_data.set_sample_width(2).set_frame_rate(16000)
-    
-    # Print information about the s16 converted audio
-    #print("\nConverted to s16 (16,000 Hz):")
-    #print("Duration:", audio_data_s16.duration_seconds, "seconds")
-    #print("Sample Width:", audio_data_s16.sample_width)
-    #print("Frame Rate:", audio_data_s16.frame_rate)
+    audio_data_s16 = normalized_audio.set_sample_width(2).set_frame_rate(16000)
     
     return audio_data_s16, 16000
-
-
+    
 def class_names_from_csv(class_map_csv_text):
   """Returns list of class names corresponding to score vector."""
   class_names = []
@@ -88,11 +91,13 @@ def analyze_yamnet(audio_samples, sample_rate):
 @app.post("/clap")
 async def analyze_clap(audio: UploadFile = File(...)):
     contents = await audio.read()
-    audio_data, sample_rate = read_audio_data(contents)
+    audio_data, sample_rate = read_audio_data2(contents)
+    #save audio_data to file
+    #audio_data.export("audio.wav", format="wav")
     
     applause_analysis = analyze_yamnet(audio_data.raw_data, sample_rate)
     score=0
-    if applause_analysis["class"] in ["Hands","Applause"]:
+    if applause_analysis["class"] in ["Hands","Applause","Knock"]:
        score=applause_analysis["score"]
     return {"score": score}
 

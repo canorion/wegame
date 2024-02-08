@@ -103,14 +103,18 @@ layout_mode = 2
 
 [node name="Draw" type="Control" parent="Container"]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 180.0
 
 [node name="CenterContainer" type="CenterContainer" parent="Container/Draw"]
 layout_mode = 0
+offset_top = 48.0
 offset_right = 320.0
-offset_bottom = 55.0
+offset_bottom = 103.0
 
 [node name="Text" parent="Container/Draw/CenterContainer" instance=ExtResource("3_nt7wt")]
 layout_mode = 2
