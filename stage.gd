@@ -128,7 +128,8 @@ func check_cycle(value):
 		elif results[current_shooter] < results[get_other_side(current_shooter)]:
 			change_state("miss")
 		else:
-			calculate_results()
+			change_state("miss")
+			#calculate_results()
 
 
 func calculate_results():
