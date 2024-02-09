@@ -2,8 +2,8 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 	get: (searchParams, prop) => searchParams.get(prop),
 });
 
-var homeTeam = params.home_team;
-var awayTeam = params.away_team;
+var homeTeam = params.homeTeam;
+var awayTeam = params.awayTeam;
 
 function getHomeTeam() {
 	return homeTeam;
